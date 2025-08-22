@@ -12,3 +12,7 @@
 ## 0.0.2
 
 - Add demo video
+
+## 0.0.3
+
+- absolute image url
