@@ -26,7 +26,7 @@ A Flutter card widget with front and multiple back sides that can be flipped wit
 
 ```yaml
 dependencies:
-  multi_flip_card: ^0.0.1
+  multi_flip_card: ^0.0.2
 ```
 
 ## Basic Usage
