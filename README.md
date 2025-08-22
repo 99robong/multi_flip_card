@@ -1,25 +1,10 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-# Multi Flip Card
-
 A Flutter card widget with front and multiple back sides that can be flipped with smooth animation effects.
 
 <p>
-  <img src="/screenshots/toggle.gif" width="200" />
-  <img src="/screenshots/fliptoback.gif" width="200" />
-  <img src="/screenshots/fliptoback1.gif" width="200" />
-  <img src="/screenshots/vert_etc.gif" width="200" />
+  <img src="https://github.com/99robong/multi_flip_card/raw/main/screenshots/toggle.gif" width="200" />
+  <img src="https://github.com/99robong/multi_flip_card/raw/main/screenshots/fliptoback.gif" width="200" />
+  <img src="https://github.com/99robong/multi_flip_card/raw/main/screenshots/fliptoback1.gif" width="200" />
+  <img src="https://github.com/99robong/multi_flip_card/raw/main/screenshots/vert_etc.gif" width="200" />
 </p>
 
 ## Installation
