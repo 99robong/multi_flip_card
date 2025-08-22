@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // 기본 사용법 - 앞면과 뒷면이 있는 카드
+            // Basic usage - card with front and back sides
             MultiFlipCard(
               width: 300,
               height: 200,
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Center(
                   child: FlipTrigger(
                     child: Text(
-                      '앞면\n(탭해서 뒤집기)',
+                      'Front\n(Tap to flip)',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               backs: [
-                // 첫 번째 뒷면
+                // First back side
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.red,
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FlipTrigger(
                       action: FlipAction.flipToFront,
                       child: Text(
-                        '뒷면 1\n(탭해서 앞면으로)',
+                        'Back 1\n(Tap to front)',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                // 두 번째 뒷면
+                // Second back side
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.green,
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        '뒷면 2',
+                        'Back 2',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: const Text(
-                                '앞면으로',
+                                'To Front',
                                 style: TextStyle(color: Colors.green),
                               ),
                             ),
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: const Text(
-                                '뒷면 1로',
+                                'To Back 1',
                                 style: TextStyle(color: Colors.green),
                               ),
                             ),
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-                // 세 번째 뒷면
+                // Third back side
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.purple,
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Center(
                     child: FlipTrigger(
                       child: Text(
-                        '뒷면 3\n(토글)',
+                        'Back 3\n(Toggle)',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -160,39 +160,39 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             const SizedBox(height: 40),
-            // 컨트롤러를 통한 프로그래밍 방식 제어
+            // Programmatic control via controller
             Wrap(
               spacing: 10,
               children: [
                 ElevatedButton(
                   onPressed: () => _controller.flip(),
-                  child: const Text('토글'),
+                  child: const Text('Toggle'),
                 ),
                 ElevatedButton(
                   onPressed: () => _controller.flipToFront(),
-                  child: const Text('앞면으로'),
+                  child: const Text('To Front'),
                 ),
                 ElevatedButton(
                   onPressed: () => _controller.flipToBack(0),
-                  child: const Text('뒷면 1'),
+                  child: const Text('Back 1'),
                 ),
                 ElevatedButton(
                   onPressed: () => _controller.flipToBack(1),
-                  child: const Text('뒷면 2'),
+                  child: const Text('Back 2'),
                 ),
                 ElevatedButton(
                   onPressed: () => _controller.flipToBack(2),
-                  child: const Text('뒷면 3'),
+                  child: const Text('Back 3'),
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            // 세로 뒤집기 카드
+            // Vertical flip card
             MultiFlipCard(
               width: 200,
               height: 150,
               direction: FlipDirection.vertical,
-              animationCurve: Curves.bounceInOut, // 바운스 애니메이션
+              animationCurve: Curves.bounceInOut, // Bounce animation
               front: Container(
                 decoration: BoxDecoration(
                   color: Colors.orange,
@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Center(
                   child: FlipTrigger(
                     child: Text(
-                      '세로 뒤집기\n앞면\n(바운스 애니메이션)',
+                      'Vertical Flip\nFront\n(Bounce Animation)',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -221,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Center(
                     child: FlipTrigger(
                       child: Text(
-                        '세로 뒤집기\n뒷면\n(바운스 애니메이션)',
+                        'Vertical Flip\nBack\n(Bounce Animation)',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -235,11 +235,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             const SizedBox(height: 20),
-            // 다른 애니메이션 곡선 예제들
+            // Different animation curve examples
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // 탄성 애니메이션
+                // Elastic animation
                 MultiFlipCard(
                   width: 120,
                   height: 80,
@@ -253,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Center(
                       child: FlipTrigger(
                         child: Text(
-                          '탄성',
+                          'Elastic',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -284,7 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                // 빠른 애니메이션
+                // Fast animation
                 MultiFlipCard(
                   width: 120,
                   height: 80,
@@ -298,7 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Center(
                       child: FlipTrigger(
                         child: Text(
-                          '빠름',
+                          'Fast',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,

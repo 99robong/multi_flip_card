@@ -15,6 +15,13 @@ and the Flutter guide for
 
 A Flutter card widget with front and multiple back sides that can be flipped with smooth animation effects.
 
+<p>
+  <img src="/screenshots/toggle.gif" width="200" />
+  <img src="/screenshots/fliptoback.gif" width="200" />
+  <img src="/screenshots/fliptoback1.gif" width="200" />
+  <img src="/screenshots/vert_etc.gif" width="200" />
+</p>
+
 ## Installation
 
 ```yaml

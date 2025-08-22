@@ -8,3 +8,7 @@
 - Touch-based control via FlipTrigger widget
 - Customizable animation duration and curves
 - InheritedWidget support for nested control
+
+## 0.0.2
+
+- Add demo video
