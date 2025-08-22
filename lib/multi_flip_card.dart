@@ -135,7 +135,7 @@ class _MultiFlipCardState extends State<MultiFlipCard>
         final isShowingFront = _animation.value < 0.5;
 
         if (isShowingFront) {
-          // 앞면을 보여줄 때 (0도 ~ 90도)
+          // Show front side (0° ~ 90°)
           return Transform(
             alignment: Alignment.center,
             transform: _getFrontTransform(),
@@ -146,7 +146,7 @@ class _MultiFlipCardState extends State<MultiFlipCard>
             ),
           );
         } else {
-          // 뒷면을 보여줄 때 (90도 ~ 180도)
+          // Show back side (90° ~ 180°)
           return Transform(
             alignment: Alignment.center,
             transform: _getBackTransform(),
@@ -165,7 +165,7 @@ class _MultiFlipCardState extends State<MultiFlipCard>
   }
 
   Matrix4 _getFrontTransform() {
-    final rotationValue = _animation.value * 3.14159; // 0~1을 0~π 라디안으로 매핑
+    final rotationValue = _animation.value * 3.14159; // Map 0~1 to 0~π radians
 
     switch (widget.direction) {
       case FlipDirection.horizontal:
@@ -180,17 +180,17 @@ class _MultiFlipCardState extends State<MultiFlipCard>
   }
 
   Matrix4 _getBackTransform() {
-    final rotationValue = _animation.value * 3.14159; // 0~1을 0~π 라디안으로 매핑
+    final rotationValue = _animation.value * 3.14159; // Map 0~1 to 0~π radians
 
     switch (widget.direction) {
       case FlipDirection.horizontal:
         return Matrix4.identity()
           ..setEntry(3, 2, 0.001) // perspective
-          ..rotateY(rotationValue + 3.14159); // π를 더해서 뒷면이 되도록
+          ..rotateY(rotationValue + 3.14159); // Add π to make it back side
       case FlipDirection.vertical:
         return Matrix4.identity()
           ..setEntry(3, 2, 0.001) // perspective
-          ..rotateX(rotationValue + 3.14159); // π를 더해서 뒷면이 되도록
+          ..rotateX(rotationValue + 3.14159); // Add π to make it back side
     }
   }
 

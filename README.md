@@ -13,24 +13,16 @@ and the Flutter guide for
 
 # Multi Flip Card
 
-앞면과 여러 개의 뒷면을 가진 Flutter 카드 위젯으로, 부드러운 애니메이션과 함께 뒤집을 수 있습니다.
+A Flutter card widget with front and multiple back sides that can be flipped with smooth animation effects.
 
-## 특징
-
-- 🎴 앞면과 여러 개의 뒷면 지원
-- 🎯 프로그래밍 방식 또는 터치를 통한 제어
-- 🎨 가로/세로 뒤집기 애니메이션
-- 🎛️ 유연한 제어 옵션
-- 📱 완전한 커스터마이징 가능
-
-## 설치
+## Installation
 
 ```yaml
 dependencies:
   multi_flip_card: ^0.0.1
 ```
 
-## 기본 사용법
+## Basic Usage
 
 ```dart
 import 'package:multi_flip_card/multi_flip_card.dart';
@@ -46,7 +38,7 @@ MultiFlipCard(
     child: Center(
       child: FlipTrigger(
         child: Text(
-          '앞면\n(탭해서 뒤집기)',
+          'Front\n(Tap to flip)',
           style: TextStyle(color: Colors.white, fontSize: 18),
           textAlign: TextAlign.center,
         ),
@@ -63,7 +55,7 @@ MultiFlipCard(
         child: FlipTrigger(
           action: FlipAction.flipToFront,
           child: Text(
-            '뒷면\n(탭해서 앞면으로)',
+            'Back\n(Tap to front)',
             style: TextStyle(color: Colors.white, fontSize: 18),
             textAlign: TextAlign.center,
           ),
@@ -74,9 +66,9 @@ MultiFlipCard(
 )
 ```
 
-## 고급 사용법
+## Advanced Usage
 
-### 컨트롤러를 사용한 프로그래밍 제어
+### Programmatic Control with Controller
 
 ```dart
 final MultiFlipCardController controller = MultiFlipCardController();
@@ -87,13 +79,13 @@ MultiFlipCard(
   backs: [MyBackWidget1(), MyBackWidget2()],
 )
 
-// 프로그래밍 방식으로 제어
-controller.flip();           // 토글
-controller.flipToFront();    // 앞면으로
-controller.flipToBack(1);    // 특정 뒷면으로
+// Programmatic control
+controller.flip();           // Toggle
+controller.flipToFront();    // Flip to front
+controller.flipToBack(1);    // Flip to specific back
 ```
 
-### 여러 뒷면과 선택적 뒤집기
+### Multiple Backs with Selective Flipping
 
 ```dart
 MultiFlipCard(
@@ -103,35 +95,35 @@ MultiFlipCard(
     MyBackWidget2(),
     MyBackWidget3(),
   ],
-  // 각 뒷면에서 다른 동작 가능
+  // Different actions possible for each back
 )
 ```
 
-### 애니메이션 곡선 커스터마이징
+### Animation Curve Customization
 
 ```dart
 MultiFlipCard(
-  animationCurve: Curves.bounceInOut,     // 바운스 효과
+  animationCurve: Curves.bounceInOut,     // Bounce effect
   animationDuration: Duration(milliseconds: 800),
   front: MyFrontWidget(),
   backs: [MyBackWidget()],
 )
 
-// 다양한 애니메이션 곡선 예제
+// Various animation curve examples
 MultiFlipCard(
-  animationCurve: Curves.elasticInOut,    // 탄성 효과
+  animationCurve: Curves.elasticInOut,    // Elastic effect
   front: MyFrontWidget(),
   backs: [MyBackWidget()],
 )
 
 MultiFlipCard(
-  animationCurve: Curves.fastOutSlowIn,   // 빠른 시작, 천천히 끝
+  animationCurve: Curves.fastOutSlowIn,   // Fast start, slow end
   front: MyFrontWidget(),
   backs: [MyBackWidget()],
 )
 ```
 
-### 세로 뒤집기 애니메이션
+### Vertical Flip Animation
 
 ```dart
 MultiFlipCard(
@@ -141,73 +133,73 @@ MultiFlipCard(
 )
 ```
 
-## FlipTrigger 사용법
+## FlipTrigger Usage
 
-`FlipTrigger`는 자식 위젯에 터치 이벤트를 추가하여 카드를 뒤집을 수 있게 해줍니다:
+`FlipTrigger` adds touch events to child widgets to enable card flipping:
 
 ```dart
 FlipTrigger(
-  action: FlipAction.toggle,    // 토글 (기본값)
+  action: FlipAction.toggle,    // Toggle (default)
   child: YourWidget(),
 )
 
 FlipTrigger(
-  action: FlipAction.flipToFront,  // 앞면으로
+  action: FlipAction.flipToFront,  // Flip to front
   child: YourWidget(),
 )
 
 FlipTrigger(
-  action: FlipAction.flipToBack,   // 특정 뒷면으로
+  action: FlipAction.flipToBack,   // Flip to specific back
   backIndex: 2,
   child: YourWidget(),
 )
 ```
 
-## 제어 방법들
+## Control Methods
 
-이 패키지는 여러 가지 방법으로 카드를 제어할 수 있습니다:
+This package provides multiple ways to control the card:
 
-1. **FlipTrigger**: 위젯 내부에서 터치로 제어
-2. **MultiFlipCardController**: 프로그래밍 방식으로 제어
-3. **InheritedWidget**: 하위 위젯에서 상위 카드에 접근
+1. **FlipTrigger**: Touch control from within widgets
+2. **MultiFlipCardController**: Programmatic control
+3. **InheritedWidget**: Access parent card from child widgets
 
-## API 참조
+## API Reference
 
 ### MultiFlipCard
 
-| 속성              | 타입                     | 설명                                       |
-| ----------------- | ------------------------ | ------------------------------------------ |
-| front             | Widget                   | 앞면 위젯                                  |
-| backs             | List<Widget>             | 뒷면 위젯들                                |
-| controller        | MultiFlipCardController? | 컨트롤러                                   |
-| direction         | FlipDirection            | 뒤집기 방향 (horizontal/vertical)          |
-| animationDuration | Duration                 | 애니메이션 지속 시간                       |
-| animationCurve    | Curve                    | 애니메이션 곡선 (기본값: Curves.easeInOut) |
-| width             | double?                  | 카드 너비                                  |
-| height            | double?                  | 카드 높이                                  |
-| isFlipped         | bool                     | 초기 뒤집힘 상태                           |
-| onFlip            | VoidCallback?            | 뒤집힐 때 콜백                             |
+| Property          | Type                     | Description                                 |
+| ----------------- | ------------------------ | ------------------------------------------- |
+| front             | Widget                   | Front widget                                |
+| backs             | List<Widget>             | Back widgets                                |
+| controller        | MultiFlipCardController? | Controller                                  |
+| direction         | FlipDirection            | Flip direction (horizontal/vertical)        |
+| animationDuration | Duration                 | Animation duration                          |
+| animationCurve    | Curve                    | Animation curve (default: Curves.easeInOut) |
+| width             | double?                  | Card width                                  |
+| height            | double?                  | Card height                                 |
+| isFlipped         | bool                     | Initial flipped state                       |
+| onFlip            | VoidCallback?            | Callback when flipped                       |
 
 ### MultiFlipCardController
 
-| 메서드                | 설명                 |
-| --------------------- | -------------------- |
-| flip()                | 카드 토글            |
-| flipToFront()         | 앞면으로 뒤집기      |
-| flipToBack(int index) | 특정 뒷면으로 뒤집기 |
-| isFlipped             | 현재 뒤집힘 상태     |
-| currentBackIndex      | 현재 뒷면 인덱스     |
+| Method                | Description           |
+| --------------------- | --------------------- |
+| flip()                | Toggle card           |
+| flipToFront()         | Flip to front         |
+| flipToBack(int index) | Flip to specific back |
+| isFlipped             | Current flipped state |
+| currentBackIndex      | Current back index    |
 
 ### FlipAction
 
-- `FlipAction.toggle`: 앞면/뒷면 토글
-- `FlipAction.flipToFront`: 앞면으로 뒤집기
-- `FlipAction.flipToBack`: 뒷면으로 뒤집기
+- `FlipAction.toggle`: Toggle front/back
+- `FlipAction.flipToFront`: Flip to front
+- `FlipAction.flipToBack`: Flip to back
 
-## 예제
+## Examples
 
-더 자세한 예제는 `/example` 폴더를 확인하세요.
+Check the `/example` folder for more detailed examples.
 
-## 라이센스
+## License
 
-이 프로젝트는 MIT 라이센스를 따릅니다.
+This project is licensed under the MIT License.
