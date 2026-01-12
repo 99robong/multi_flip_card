@@ -1,6 +1,6 @@
 name: multi_flip_card
 description: "A Flutter card widget with front and multiple back sides that can be flipped with smooth animation effects."
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/99robong
 repository: https://github.com/99robong/multi_flip_card
 

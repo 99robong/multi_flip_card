@@ -1,6 +1,6 @@
 name: multi_flip_card_example
 description: "Example app for multi_flip_card package"
-version: 0.1.0
+version: 0.1.1
 publish_to: none
 
 environment:

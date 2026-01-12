@@ -23,3 +23,7 @@
 - Add key-based flipping: `FlipTrigger(backKey: ...)` and `MultiFlipCardController.flipToBackKey(...)`
 - Invalid key/index handling: `developer.log` + fallback to first entry/index 0
 - Empty backs behavior: flip becomes no-op and keeps showing front
+
+## 0.1.1
+
+- Docs: fix README installation version
