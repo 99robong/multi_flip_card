@@ -16,3 +16,10 @@
 ## 0.0.3
 
 - absolute image url
+
+## 0.1.0
+
+- Add `backs` Map support: `Map<String, Widget>` (recommended) while keeping `List<Widget>` backward compatible
+- Add key-based flipping: `FlipTrigger(backKey: ...)` and `MultiFlipCardController.flipToBackKey(...)`
+- Invalid key/index handling: `developer.log` + fallback to first entry/index 0
+- Empty backs behavior: flip becomes no-op and keeps showing front

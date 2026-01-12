@@ -16,6 +16,46 @@ dependencies:
 
 ## Basic Usage
 
+### Preferred: Map backs (key-based)
+
+Using `Map<String, Widget>` lets you flip by key, so inserting/reordering backs won't force you to update indices.
+
+```dart
+import 'package:multi_flip_card/multi_flip_card.dart';
+
+final MultiFlipCardController controller = MultiFlipCardController();
+
+MultiFlipCard(
+  controller: controller,
+  width: 300,
+  height: 200,
+  front: Container(
+    decoration: BoxDecoration(
+      color: Colors.blue,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: const Center(
+      child: FlipTrigger(
+        child: Text(
+          'Front\n(Tap to flip)',
+          style: TextStyle(color: Colors.white, fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+  ),
+  backs: const <String, Widget>{
+    'details': Center(child: Text('Back: details')),
+    'settings': Center(child: Text('Back: settings')),
+  },
+)
+
+// Flip by key
+controller.flipToBackKey('settings');
+```
+
+### Backward compatible: List backs (index-based)
+
 ```dart
 import 'package:multi_flip_card/multi_flip_card.dart';
 
@@ -75,6 +115,7 @@ MultiFlipCard(
 controller.flip();           // Toggle
 controller.flipToFront();    // Flip to front
 controller.flipToBack(1);    // Flip to specific back
+controller.flipToBackKey('settings'); // Flip to specific back by key (Map backs mode)
 ```
 
 ### Multiple Backs with Selective Flipping
@@ -145,6 +186,12 @@ FlipTrigger(
   backIndex: 2,
   child: YourWidget(),
 )
+
+FlipTrigger(
+  action: FlipAction.flipToBack,   // Flip to specific back by key (Map backs mode)
+  backKey: 'settings',
+  child: YourWidget(),
+)
 ```
 
 ## Control Methods
@@ -159,28 +206,36 @@ This package provides multiple ways to control the card:
 
 ### MultiFlipCard
 
-| Property          | Type                     | Description                                 |
-| ----------------- | ------------------------ | ------------------------------------------- |
-| front             | Widget                   | Front widget                                |
-| backs             | List<Widget>             | Back widgets                                |
-| controller        | MultiFlipCardController? | Controller                                  |
-| direction         | FlipDirection            | Flip direction (horizontal/vertical)        |
-| animationDuration | Duration                 | Animation duration                          |
-| animationCurve    | Curve                    | Animation curve (default: Curves.easeInOut) |
-| width             | double?                  | Card width                                  |
-| height            | double?                  | Card height                                 |
-| isFlipped         | bool                     | Initial flipped state                       |
-| onFlip            | VoidCallback?            | Callback when flipped                       |
+| Property          | Type                                | Description                                 |
+| ----------------- | ----------------------------------- | ------------------------------------------- |
+| front             | Widget                              | Front widget                                |
+| backs             | List<Widget> or Map<String, Widget> | Back widgets (Map is recommended)           |
+| controller        | MultiFlipCardController?            | Controller                                  |
+| direction         | FlipDirection                       | Flip direction (horizontal/vertical)        |
+| animationDuration | Duration                            | Animation duration                          |
+| animationCurve    | Curve                               | Animation curve (default: Curves.easeInOut) |
+| width             | double?                             | Card width                                  |
+| height            | double?                             | Card height                                 |
+| isFlipped         | bool                                | Initial flipped state                       |
+| onFlip            | VoidCallback?                       | Callback when flipped                       |
+
+Notes:
+
+- Map backs uses insertion order.
+- Invalid key/index logs via `developer.log` and falls back to the first entry / index 0.
+- If backs is empty, flipping is a no-op and keeps showing front.
 
 ### MultiFlipCardController
 
-| Method                | Description           |
-| --------------------- | --------------------- |
-| flip()                | Toggle card           |
-| flipToFront()         | Flip to front         |
-| flipToBack(int index) | Flip to specific back |
-| isFlipped             | Current flipped state |
-| currentBackIndex      | Current back index    |
+| Method                    | Description                                   |
+| ------------------------- | --------------------------------------------- |
+| flip()                    | Toggle card                                   |
+| flipToFront()             | Flip to front                                 |
+| flipToBack(int index)     | Flip to specific back                         |
+| flipToBackKey(String key) | Flip to specific back by key (Map backs mode) |
+| isFlipped                 | Current flipped state                         |
+| currentBackIndex          | Current back index                            |
+| currentBackKey            | Current back key (Map backs mode)             |
 
 ### FlipAction
 

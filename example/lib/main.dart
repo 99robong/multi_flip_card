@@ -26,7 +26,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final MultiFlipCardController _controller = MultiFlipCardController();
+  final MultiFlipCardController _mapController = MultiFlipCardController();
+  final MultiFlipCardController _listController = MultiFlipCardController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +37,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Basic usage - card with front and back sides
+            // Preferred usage - Map backs (key-based)
             MultiFlipCard(
               width: 300,
               height: 200,
-              controller: _controller,
+              controller: _mapController,
               front: Container(
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Center(
                   child: FlipTrigger(
                     child: Text(
-                      'Front\n(Tap to flip)',
+                      'Front (Map backs)\n(Tap to flip)',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -60,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              backs: [
-                // First back side
-                Container(
+              backs: {
+                // Key order defines the "first entry" fallback.
+                'details': Container(
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(12),
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FlipTrigger(
                       action: FlipAction.flipToFront,
                       child: Text(
-                        'Back 1\n(Tap to front)',
+                        'Back: details\n(Tap to front)',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -82,8 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                // Second back side
-                Container(
+                'settings': Container(
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(12),
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Back 2',
+                        'Back: settings',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           FlipTrigger(
                             action: FlipAction.flipToBack,
-                            backIndex: 0,
+                            backKey: 'details',
                             child: Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: const Text(
-                                'To Back 1',
+                                'To details',
                                 style: TextStyle(color: Colors.green),
                               ),
                             ),
@@ -137,8 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-                // Third back side
-                Container(
+                'about': Container(
                   decoration: BoxDecoration(
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(12),
@@ -146,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Center(
                     child: FlipTrigger(
                       child: Text(
-                        'Back 3\n(Toggle)',
+                        'Back: about\n(Toggle)',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -157,36 +156,102 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-              ],
+              },
             ),
             const SizedBox(height: 40),
-            // Programmatic control via controller
+            // Programmatic control via controller (Map backs)
             Wrap(
               spacing: 10,
               children: [
                 ElevatedButton(
-                  onPressed: () => _controller.flip(),
+                  onPressed: () => _mapController.flip(),
                   child: const Text('Toggle'),
                 ),
                 ElevatedButton(
-                  onPressed: () => _controller.flipToFront(),
+                  onPressed: () => _mapController.flipToFront(),
                   child: const Text('To Front'),
                 ),
                 ElevatedButton(
-                  onPressed: () => _controller.flipToBack(0),
-                  child: const Text('Back 1'),
+                  onPressed: () => _mapController.flipToBackKey('details'),
+                  child: const Text('details'),
                 ),
                 ElevatedButton(
-                  onPressed: () => _controller.flipToBack(1),
-                  child: const Text('Back 2'),
+                  onPressed: () => _mapController.flipToBackKey('settings'),
+                  child: const Text('settings'),
                 ),
                 ElevatedButton(
-                  onPressed: () => _controller.flipToBack(2),
-                  child: const Text('Back 3'),
+                  onPressed: () => _mapController.flipToBackKey('about'),
+                  child: const Text('about'),
                 ),
               ],
             ),
             const SizedBox(height: 20),
+
+            // Backward compatible usage - List backs (index-based)
+            MultiFlipCard(
+              width: 300,
+              height: 140,
+              controller: _listController,
+              front: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Center(
+                  child: FlipTrigger(
+                    child: Text(
+                      'Front (List backs)\n(Tap to flip)',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              backs: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: FlipTrigger(
+                      action: FlipAction.flipToFront,
+                      child: Text(
+                        'Back 0\n(Tap to front)',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Back 1',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+
             // Vertical flip card
             MultiFlipCard(
               width: 200,
